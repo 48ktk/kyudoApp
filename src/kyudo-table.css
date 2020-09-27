@@ -8,6 +8,7 @@ table {
   background-color: #ffffff;
   color: #000000;
   text-align: left;
+  /* transform: rotate(-90deg); */
 }
 tbody {
   border: 3px solid;
@@ -25,3 +26,6 @@ td {
   text-align: center;
   padding: 3px;
 }
+/* #test{
+  transform: rotate(-90deg);
+} */

@@ -1,25 +1,41 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import "./kyudo-table.css";
 
-ReactDOM.render(<h1>大学弓道リーグ戦形式　試合成績</h1>, document.getElementById("root"));
+ReactDOM.render(
+  <h1>大学弓道リーグ戦形式　試合成績</h1>,
+  document.getElementById("root")
+);
 /**
  * 個人的中表示欄作成関数
  * @param {*} props
  */
 function CreateEachScoreField(props) {
   // Todo 合計計算処理 該当playerの的中が変わるたび
+  let score = 0;
+  // 描画後でないとtableを取得できない
+  useEffect(() => {
+    const table = document.getElementById("main-table");
+    const cells = table.querySelectorAll("td.player" + props.order);
+    
+    cells.forEach((cell) => {
+      if (cell.innerText == "〇") {
+        score++;
+      }
+      document.querySelector("th.player" + props.order).innerText = score;
+    });
+  });
   return <th className={"player" + props.order}></th>;
 }
 CreateEachScoreField.propTypes = {
   order: PropTypes.string,
 };
-// 先立、後立の合計表示欄
+// 前立、後立の合計表示欄
 function CreateTachiTortal(props) {
   if (props.tachi == "first half") {
-    // Todo 先立の合計計算処理（player1~4の的中変わるたび）
-    console.log("先立");
+    // Todo 前立の合計計算処理（player1~4の的中変わるたび）
+    console.log("前立");
   } else {
     // Todo 同上
     console.log("後立");
@@ -57,10 +73,25 @@ function CreateScoreRow() {
  * @param {} props
  */
 function CreateEntryField(props) {
+  //Todo clickで 〇 → ・（バツ）→ " "（空白）→ 〇 と入力可能にする
+  const [result, setResult] = useState("〇");
   return (
-    //Todo clickで 〇 → ・（バツ）→ " "（空白）→ 〇 と入力可能にする
-    <td className={"player" + props.order} onClick={() => alert("click")}>
-      〇
+    <td
+      className={"player" + props.order}
+      onClick={() => {
+        console.log({ result });
+        if (result == "〇") {
+          setResult("・");
+        } else if (result == "・") {
+          setResult(" ");
+        } else if (result == " ") {
+          setResult("〇");
+        } else {
+          alert("error");
+        }
+      }}
+    >
+      {result}
     </td>
   );
 }
@@ -90,10 +121,10 @@ function CreateRow() {
   );
 }
 /**
- * 立（4人4射）×2（先立・後立）欄作成
- * @param {*} props 
+ * 立（4人4射）×2（前立・後立）欄作成
+ * @param {*} props
  */
-function CreateTachi(props){
+function CreateTachi(props) {
   return (
     <tbody className={"try" + props.order}>
       <CreateRow />
@@ -101,10 +132,10 @@ function CreateTachi(props){
       <CreateRow />
       <CreateRow />
     </tbody>
-  )
+  );
 }
-CreateTachi.propTypes={
-  order:PropTypes.string,
+CreateTachi.propTypes = {
+  order: PropTypes.string,
 };
 // 選手名
 function CreatePlayerNameField(props) {
@@ -131,19 +162,48 @@ function CreatePlayerRow() {
     </tr>
   );
 }
+
+const TRIAL_COUNT = 20;
+let entryField = [];
+for (let i = 0; i < TRIAL_COUNT; i++) {
+  entryField.push(<CreateEntryField order="1" />);
+}
+function CreatePlayer(props) {
+  console.log("player" + props.order);
+  return (
+    <tr>
+      <CreatePlayerNameField name="A" />
+      {entryField}
+      <CreateEachScoreField order={props.order} />
+    </tr>
+  );
+}
+CreatePlayer.propTypes = {
+  order: PropTypes.string,
+};
+
 ReactDOM.render(
-  <table width="98%">
+  <table width="98%" id="main-table">
     <tbody className="total">
       <CreateScoreRow />
     </tbody>
-    <CreateTachi order="5"/>
-    <CreateTachi order="4"/>
-    <CreateTachi order="3"/>
-    <CreateTachi order="2"/>
-    <CreateTachi order="1"/>
+    <CreateTachi order="5" />
+    <CreateTachi order="4" />
+    <CreateTachi order="3" />
+    <CreateTachi order="2" />
+    <CreateTachi order="1" />
     <tbody className="player">
       <CreatePlayerRow />
     </tbody>
   </table>,
   document.getElementById("kyudo-table")
+);
+
+ReactDOM.render(
+  <table width="98%">
+    <tbody>
+      <CreatePlayer order="1" />
+    </tbody>
+  </table>,
+  document.getElementById("test")
 );
