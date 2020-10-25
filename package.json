@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Hello React",
   "private": true,
-  "main": "index.js",
+  "main": "toppage.js",
   "scripts": {
     "start": "webpack-dev-server",
     "webpack": "webpack -d"
