@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Link, Route } from "react-router-dom";
 import Comment from "./pages/comment";
-import CreatePlayer from "./pages/index";
+import MainTable from "./pages/index";
 
 ReactDOM.render(
   <h1>yugamae top page</h1>,
@@ -22,7 +22,7 @@ const ToCreate = () => (
   <BrowserRouter>
   <div>
     <Link to="/create">create</Link>
-    <Route path="/create" render={() => <CreatePlayer name={"A"} order={"1"}/> } />
+    <Route path="/create" render={() => <MainTable tmp={"test"}/> } />
   </div>
   </BrowserRouter>
 )

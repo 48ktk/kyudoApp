@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import "./kyudo-table.css";
 
@@ -6,23 +6,61 @@ import "./kyudo-table.css";
 横ver
 *********/
 /**
- * 個人的中表示欄作成関数
- * @param {*} props
+ * 表コンポーネント
+ * @param {*} props 
  */
-function CreateEachScoreField(props) {
-  return <th className={"player" + props.order}>{props.score}</th>;
+function MainTable(props) {
+  const tmp = props.tmp;
+  console.log(tmp);
+  // 最終的にはユーザーが試合形式を指定できる
+  const NUMBER_OF_PLAYER = 8;
+  const TRIAL_PER_PLAYER = 20;
+  // 的中データ X人 × Y射
+  const rawData = [];
+  // <tbody></tbody>に はさむ用
+  let tableRow = [];
+  for (let i = 0; i < NUMBER_OF_PLAYER; i++) {
+    // 1行分の的中データをテーブル形式にする
+    let tableData = [];
+    // 氏名
+    tableData.push(
+      <td key={"playername" + i} className={"player-name"}>
+        {"名前"}
+      </td>
+    );
+    // 的中欄
+    // clickで的中を 〇 → ・ → " " → 〇 に変更できる
+    for (let j = 0; j < TRIAL_PER_PLAYER; j++) {
+      rawData.push("〇");
+      // todo onClick
+      tableData.push(<td key={"player" + i + "trial" + j}>{rawData[j]}</td>);
+    }
+    // 合計欄
+    // todo 的中欄が変わるたびに再計算が走る
+    tableData.push(
+      <th key={"result" + i} className={"player-result"}>
+        {"合計的中"}
+      </th>
+    );
+    // 1行分の的中データを格納
+    tableRow.push(<tr key={"row" + i}>{tableData}</tr>);
+  }
+
+  return (
+    <table>
+      <tbody>{tableRow}</tbody>
+    </table>
+  );
 }
-CreateEachScoreField.propTypes = {
-  order: PropTypes.string,
-  score: PropTypes.number,
+MainTable.propTypes = {
+  tmp: PropTypes.string,
 };
+
 /**
  * 的中入力欄作成関数
  * @param {} props
  */
 function CreateEntryField(props) {
-  //Todo clickで 〇 → ・（バツ）→ " "（空白）→ 〇 と入力可能にする
-  //const [result, setResult] = useState("〇");
   const trial = props.trial;
   // props.resultには一人の的中データ全部が入っている。。setResultでは更新分だけ置き換えてはくれない
   // https://ja.reactjs.org/docs/hooks-faq.html#should-i-use-one-or-many-state-variables
@@ -52,56 +90,5 @@ CreateEntryField.propTypes = {
   result: PropTypes.object,
   setResult: PropTypes.func,
 };
-// 選手名
-function CreatePlayerNameField(props) {
-  return <td>{props.name}</td>;
-}
-CreatePlayerNameField.propTypes = {
-  name: PropTypes.string,
-};
 
-function CreatePlayer(props) {
-  // 将来的には射数もユーザーが入力
-  const TRIAL_COUNT = 20;
-  const initialAllResults = {};
-  for (let i = 0; i < TRIAL_COUNT; i++) {
-    initialAllResults["trial" + i] = "〇";
-  }
-  // 親で的中データを持っておく（状態を管理する？）
-  const [result, setResult] = useState(initialAllResults);
-  console.log(result);
-  //  playerの的中が変わるたび合計計算処理
-  // 結局親でやるしかない？このままだとCreateEachScoreFieldは多分いらない
-  let score = 0;
-
-  let entryField = [];
-  // keyが必要 https://ja.reactjs.org/docs/lists-and-keys.html
-  for (let i = 0; i < TRIAL_COUNT; i++) {
-    entryField.push(
-      <CreateEntryField
-        key={i}
-        order={props.order}
-        trial={"trial" + i}
-        result={result}
-        setResult={setResult}
-      />
-    );
-  }
-  return (
-    <table>
-      <tbody>
-        <tr>
-          <CreatePlayerNameField name={props.name} />
-          {entryField}
-          <CreateEachScoreField order={props.order} score={score} />
-        </tr>
-      </tbody>
-    </table>
-  );
-}
-CreatePlayer.propTypes = {
-  name: PropTypes.string,
-  order: PropTypes.string,
-};
-
-export default CreatePlayer;
+export default MainTable;
