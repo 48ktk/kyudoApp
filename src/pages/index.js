@@ -20,7 +20,7 @@ function MainTable(props) {
   // <tbody></tbody>に はさむ用
   let tableRow = [];
   /**
-   * 的中再計算関数
+   * 的中計算関数
    * @param {*} position 何人目の何射目が変更されたかをidでIN
    */
   const calculateScore = (position) => {
@@ -30,6 +30,7 @@ function MainTable(props) {
       console.log(parseInt(array[i]));
     }
     // todo 単一要素の取り出しにする でもidは使いたくない気がする
+    // 相手校入力を考えるとこのままでも？？
     const player = document.getElementsByClassName("player" + array[0]);
     console.log(player);
     const results = player[0].querySelectorAll("td");
@@ -98,7 +99,6 @@ function MainTable(props) {
     // 1行分の的中データを格納
     tableRow.push(<tr key={"row" + i} className={"player" + i}>{tableData}</tr>);
   }
-
   return (
     <table>
       <tbody>{tableRow}</tbody>
@@ -107,41 +107,6 @@ function MainTable(props) {
 }
 MainTable.propTypes = {
   tmp: PropTypes.string,
-};
-
-/**
- * 的中入力欄作成関数
- * @param {} props
- */
-function CreateEntryField(props) {
-  const trial = props.trial;
-  // props.resultには一人の的中データ全部が入っている。。setResultでは更新分だけ置き換えてはくれない
-  // https://ja.reactjs.org/docs/hooks-faq.html#should-i-use-one-or-many-state-variables
-  return (
-    <td
-      className={"player" + props.order}
-      onClick={() => {
-        console.log(props.result[trial]);
-        if (props.result[trial] == "〇") {
-          props.setResult({ ...props.result, [trial]: "・" });
-        } else if (props.result[trial] == "・") {
-          props.setResult({ ...props.result, [trial]: " " });
-        } else if (props.result[trial] == " ") {
-          props.setResult({ ...props.result, [trial]: "〇" });
-        } else {
-          alert("error");
-        }
-      }}
-    >
-      {props.result[trial]}
-    </td>
-  );
-}
-CreateEntryField.propTypes = {
-  order: PropTypes.string,
-  trial: PropTypes.string,
-  result: PropTypes.object,
-  setResult: PropTypes.func,
 };
 
 export default MainTable;
