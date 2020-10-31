@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Link, Route } from "react-router-dom";
 import Comment from "./pages/comment";
-import MainTable from "./pages/index";
+import MainTable from "./pages/input";
 
 ReactDOM.render(
   <h1>yugamae top page</h1>,
