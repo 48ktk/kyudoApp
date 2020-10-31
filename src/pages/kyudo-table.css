@@ -1,0 +1,31 @@
+table {
+  border-collapse: collapse;
+  border: 2.5px solid #000000;
+  background-color: #ffffff;
+  color: #000000;
+  text-align: left;
+}
+
+table tbody {
+  border: 3px solid;
+}
+
+table tbody tr td {
+  border: 1px solid #000000;
+  border-left: 2px solid;
+  text-align: center;
+  padding: 3px;
+}
+
+table tbody tr td.player-name {
+  padding: 0;
+}
+
+table tbody tr th.player-score {
+  border: 1px solid #000000;
+  border-left: 2px solid #000000;
+  background-color: #a9a9a9;
+  color: #ffffff;
+  text-align: center;
+}
+/*# sourceMappingURL=kyudo-table.css.map */

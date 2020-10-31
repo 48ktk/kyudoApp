@@ -1,3 +1,5 @@
 node_modules/
 public/**
 !public/index.html
+.vscode/
+src/kyudo-table.css.map
