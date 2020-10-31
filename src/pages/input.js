@@ -7,7 +7,7 @@ import "./kyudo-table.css";
 *********/
 /**
  * 表コンポーネント
- * @param {*} props
+ * @param {*} props 表示するjsonデータ、自校か相手校か
  */
 function MainTable(props) {
   const tmp = props.tmp;
@@ -71,7 +71,7 @@ function MainTable(props) {
     // 氏名
     tableData.push(
       <td key={"playername" + i} className={"player-name"}>
-        {"名前"}
+        <input type={"text"} defaultValue={"名前"}></input>
       </td>
     );
     // 的中欄
@@ -92,12 +92,20 @@ function MainTable(props) {
     // 合計欄
     // todo 的中欄が変わるたびに再計算が走る
     tableData.push(
-      <th key={"score" + i} className={"player-score"} id={"player" + i + "-" + "score"}>
+      <th
+        key={"score" + i}
+        className={"player-score"}
+        id={"player" + i + "-" + "score"}
+      >
         {"合計的中"}
       </th>
     );
     // 1行分の的中データを格納
-    tableRow.push(<tr key={"row" + i} className={"player" + i}>{tableData}</tr>);
+    tableRow.push(
+      <tr key={"row" + i} className={"player" + i}>
+        {tableData}
+      </tr>
+    );
   }
   return (
     <table>
