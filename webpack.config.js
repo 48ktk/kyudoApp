@@ -1,3 +1,5 @@
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
 module.exports = {
   entry: {
     app: "./src/App.js",
@@ -30,6 +32,23 @@ module.exports = {
         exclude: /node_modules/,
         loader: "babel-loader",
       },
+      {
+        test: /\.(sa|sc|c)ss$/,
+        exclude: /node_modules/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: { url: false }
+          },
+          'sass-loader'
+        ]
+      },
     ],
   },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: './src/pages/kyudo-table.css',  // styles/app.cssに出力される？
+    })
+  ],
 };

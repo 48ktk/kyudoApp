@@ -15,6 +15,7 @@ import ReactDOM from "react-dom";
 // import DraftsIcon from "@material-ui/icons/Drafts";
 // import Comment from "./pages/comment";
 // import MainTable from "./pages/input";
+import "./styles/kyudo-table.scss";
 import ListRouter from "./components/button";
 import HeadingCard from "./components/headingCard"
 
