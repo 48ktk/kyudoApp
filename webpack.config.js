@@ -5,8 +5,8 @@ module.exports = {
     app: "./src/App.js",
   },
   output: {
-    path: __dirname + "/public/js",
-    filename: "[name].js",
+    path: __dirname + "/public",
+    filename: "js/[name].js",
   },
   devServer: {
     contentBase: __dirname + "/public",
@@ -41,14 +41,14 @@ module.exports = {
             loader: 'css-loader',
             options: { url: false }
           },
-          'sass-loader'
+          {loader: 'sass-loader' },
         ]
       },
     ],
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: './src/pages/kyudo-table.css',  // styles/app.cssに出力される？
+      filename: 'styles/[name].css',  // styles/に出力される？
     })
   ],
 };

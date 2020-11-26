@@ -17,7 +17,7 @@ import ReactDOM from "react-dom";
 // import MainTable from "./pages/input";
 import "./styles/kyudo-table.scss";
 import ListRouter from "./components/button";
-import HeadingCard from "./components/headingCard"
+import HeadingCard from "./components/headingCard";
 
 ReactDOM.render(<h1>yugamae top page</h1>, document.getElementById("root"));
 
@@ -49,5 +49,3 @@ ReactDOM.render(<HeadingCard />, document.getElementById("card"));
 // ReactDOM.render(<ToComment />, document.getElementById("comment"));
 
 // ReactDOM.render(<ToInput />, document.getElementById("create"));
-
-
