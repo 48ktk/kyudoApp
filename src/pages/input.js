@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./kyudo-table.css";
 
 /*********
 横ver

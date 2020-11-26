@@ -1,10 +1,12 @@
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
 module.exports = {
   entry: {
     app: "./src/App.js",
   },
   output: {
-    path: __dirname + "/public/js",
-    filename: "[name].js",
+    path: __dirname + "/public",
+    filename: "js/[name].js",
   },
   devServer: {
     contentBase: __dirname + "/public",
@@ -30,6 +32,23 @@ module.exports = {
         exclude: /node_modules/,
         loader: "babel-loader",
       },
+      {
+        test: /\.(sa|sc|c)ss$/,
+        exclude: /node_modules/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: { url: false }
+          },
+          {loader: 'sass-loader' },
+        ]
+      },
     ],
   },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'styles/[name].css',  // styles/に出力される？
+    })
+  ],
 };
