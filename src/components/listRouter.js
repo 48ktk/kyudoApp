@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 // import { makeStyles } from "@material-ui/core/styles";
 // import { Route, MemoryRouter } from "react-router";
 // import {BrowserRouter as Router} from "react-router";
-import  {BrowserRouter as Router, Link, Switch, Route}  from "react-router-dom";
+import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 // import ListItemIcon from "@material-ui/core/ListItemIcon";
@@ -46,70 +46,29 @@ BaseButton.propTypes = {
 // }
 
 //export { SaveButton, AddButton};
-
-// function ListItemLink(props) {
-//   const { icon, primary, to } = props;
-
-//   // const renderLink = React.useMemo(
-//   //   () => React.forwardRef((itemProps, ref) => <RouterLink to={to} ref={ref} {...itemProps} />),
-//   //   [to],
-//   // );
-//   const renderLink = React.useMemo(
-//     () =>
-//     // 無名関数だとlinterrorなので命名
-//       React.forwardRef(function generateLinkList(itemProps, ref) {
-//         return <RouterLink to={to} ref={ref} {...itemProps} />;
-//       }),
-//     [to]
-//   );
-
-//   return (
-//     <li>
-//       <ListItem button component={renderLink}>
-//         {icon ? <ListItemIcon>{icon}</ListItemIcon> : null}
-//         <ListItemText primary={primary} />
-//       </ListItem>
-//     </li>
-//   );
-// }
-
-// ListItemLink.propTypes = {
-//   icon: PropTypes.element,
-//   primary: PropTypes.string.isRequired,
-//   to: PropTypes.string.isRequired,
-// };
-// eslint-disable-next-line react/display-name
-// const useStyles = makeStyles({
-//   root: {
-//     width: 360,
-//   },
-// });
-
 export default function ListRouter() {
   //const classes = useStyles();
 
   return (
-    <Router >
+    <Router>
       <List>
-        <ListItem button component={Link} to='/'>
+        <ListItem button component={Link} to="/">
           <ListItemText primary="MainTable" />
         </ListItem>
-        <ListItem button component={Link} to='/comment'>
+        <ListItem button component={Link} to="/comment">
           <ListItemText primary="Comment" />
         </ListItem>
       </List>
-        
+
       <Switch>
-          <Route exact path="/">
-            <MainTable />
-          </Route>
-          <Route exact path="/comment">
-            <Comment />
-          </Route>
-        </Switch>
+        <Route exact path="/">
+          <MainTable />
+        </Route>
+        <Route exact path="/comment">
+          <Comment />
+        </Route>
+      </Switch>
     </Router>
-      
-    
   );
 }
 /* <div className={classes.root}>
