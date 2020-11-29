@@ -16,11 +16,11 @@ import ReactDOM from "react-dom";
 // import Comment from "./pages/comment";
 // import MainTable from "./pages/input";
 import "./styles/kyudo-table.scss";
-import ListRouter from "./components/button";
+import ListRouter from "./components/listRouter";
 import HeadingCard from "./components/headingCard";
 
 ReactDOM.render(<h1>yugamae top page</h1>, document.getElementById("root"));
 
 ReactDOM.render(<ListRouter />, document.getElementById("linklist"));
 
-ReactDOM.render(<HeadingCard />, document.getElementById("card"));
+ReactDOM.render(<HeadingCard date="2017-10-12" title="リーグ戦第一戦対日本大学戦" result="120-141" />, document.getElementById("card"));

@@ -23,7 +23,7 @@ const useStyles = makeStyles({
   },
 });
 // todo cardの親コンポーネント作成
-export default function HeadingCard() {
+export default function HeadingCard(prop) {
   const classes = useStyles();
 
   return (
@@ -34,13 +34,16 @@ export default function HeadingCard() {
           color="textSecondary"
           gutterBottom
         >
-          2017-10-12
+          {/* 2017-10-12 */}
+          {prop.date}
         </Typography>
         <Typography variant="h5" component="h2">
-          リーグ戦第一戦対日本大学戦
+          {/* リーグ戦第一戦対日本大学戦 */}
+          {prop.title}
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
-          120-141
+          {/* 120-141 */}
+          {prop.result}
         </Typography>
         <Typography variant="body2" component="p">
           well meaning and kindly.
@@ -49,7 +52,7 @@ export default function HeadingCard() {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Learn More</Button>
+        <Button size="small">詳細</Button>
       </CardActions>
     </Card>
   );
