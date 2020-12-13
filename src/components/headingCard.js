@@ -1,10 +1,13 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import MainTable from "../pages/input";
+import Comment from "../pages/comment";
 
 const useStyles = makeStyles({
   root: {
@@ -37,7 +40,7 @@ export default function HeadingCard(prop) {
           {/* 2017-10-12 */}
           {prop.date}
         </Typography>
-        <Typography variant="h5" component="h2">
+        <Typography variant="h5" component={("h2", Link)} to="/input">
           {/* リーグ戦第一戦対日本大学戦 */}
           {prop.title}
         </Typography>
@@ -52,7 +55,19 @@ export default function HeadingCard(prop) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">詳細</Button>
+        <Button size="small" component={Link} to="/comment">
+          詳細
+        </Button>
+        <Router>
+          <Switch>
+            <Route exact path="/input">
+              <MainTable />
+            </Route>
+            <Route exact path="/comment">
+              <Comment />
+            </Route>
+          </Switch>
+        </Router>
       </CardActions>
     </Card>
   );
