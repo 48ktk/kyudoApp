@@ -15,7 +15,7 @@ import Button from "@material-ui/core/Button";
 // import SaveIcon from "@material-ui/icons/Save";
 // import AddIcon from "@material-ui/icons/Add";
 // import EditIcon from "@material-ui/icons/Edit";
-
+import OverviewCard from "./overviewCard"
 import MainTable from "../pages/input";
 import Comment from "../pages/comment";
 
@@ -52,16 +52,22 @@ export default function ListRouter() {
   return (
     <Router>
       <List>
-        <ListItem button component={Link} to="/">
-          <ListItemText primary="MainTable" />
+      <ListItem button component={Link} to="/">
+          <ListItemText primary="試合一覧" />
+        </ListItem>
+        <ListItem button component={Link} to="/input">
+          <ListItemText primary="追加・編集" />
         </ListItem>
         <ListItem button component={Link} to="/comment">
-          <ListItemText primary="Comment" />
+          <ListItemText primary="コメント・詳細" />
         </ListItem>
       </List>
 
       <Switch>
-        <Route exact path="/">
+      <Route exact path="/">
+          <OverviewCard />
+        </Route>
+        <Route exact path="/input">
           <MainTable />
         </Route>
         <Route exact path="/comment">
