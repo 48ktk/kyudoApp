@@ -16,7 +16,7 @@ import Button from "@material-ui/core/Button";
 // import AddIcon from "@material-ui/icons/Add";
 // import EditIcon from "@material-ui/icons/Edit";
 import OverviewCard from "./overviewCard"
-import MainTable from "../pages/input";
+import MainTable from "../pages/personaldata";
 import Comment from "../pages/comment";
 
 function BaseButton(props) {

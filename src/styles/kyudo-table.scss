@@ -12,11 +12,14 @@ table {
         border-left: 2px solid;
         text-align: center;
         padding: 3px;
+        min-width: 22px;
       }
       td.player-name {
         padding: 0;
-        // input {
-        // }
+        input {
+          border: 0;
+          min-height: 30px;
+        }
       }
       th.player-score {
         border: 1px solid #000000;
