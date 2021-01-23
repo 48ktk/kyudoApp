@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
  * 表コンポーネント
  * @param {*} props 表示するjsonデータ、自校か相手校か
  */
-function MainTable(props) {
+function TableRow(props) {
   const tmp = props.tmp;
   console.log(tmp);
   // 最終的にはユーザーが試合形式を指定できる
@@ -106,14 +106,10 @@ function MainTable(props) {
       </tr>
     );
   }
-  return (
-    <table>
-      <tbody>{tableRow}</tbody>
-    </table>
-  );
+  return { tableRow };
 }
-MainTable.propTypes = {
+TableRow.propTypes = {
   tmp: PropTypes.string,
 };
 
-export default MainTable;
+export default TableRow;

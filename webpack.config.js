@@ -1,17 +1,19 @@
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const path = require("path");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   entry: {
     app: "./src/App.js",
   },
   output: {
-    path: __dirname + "/public",
+    path: path.resolve(__dirname, "public"),
     filename: "js/[name].js",
   },
   devServer: {
     contentBase: __dirname + "/public",
     port: 8080,
     publicPath: "/js/",
+    historyApiFallback: true,
   },
   devtool: "eval-source-map",
   mode: "development",
@@ -38,17 +40,17 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader,
           {
-            loader: 'css-loader',
-            options: { url: false }
+            loader: "css-loader",
+            options: { url: false },
           },
-          {loader: 'sass-loader' },
-        ]
+          { loader: "sass-loader" },
+        ],
       },
     ],
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'styles/[name].css',  // styles/に出力される？
-    })
+      filename: "styles/[name].css", // styles/に出力される？
+    }),
   ],
 };
