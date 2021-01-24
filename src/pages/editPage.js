@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import TableRow from "../components/personaldata";
+import TableRow from "../components/tableRow";
 
 function MainTable(props) {
   // TODO こっちでresultをuseStateする、それを子コンポーネントに渡す
