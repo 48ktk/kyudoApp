@@ -46,37 +46,7 @@ BaseButton.propTypes = {
 // }
 
 //export { SaveButton, AddButton};
-export default function ListRouter() {
-  //const classes = useStyles();
 
-  return (
-    <Router>
-      <List>
-        <ListItem button component={Link} to="/">
-          <ListItemText primary="試合一覧" />
-        </ListItem>
-        <ListItem button component={Link} to="/input">
-          <ListItemText primary="追加・編集" />
-        </ListItem>
-        <ListItem button component={Link} to="/comment">
-          <ListItemText primary="コメント・詳細" />
-        </ListItem>
-      </List>
-
-      <Switch>
-        <Route exact path="/">
-          <OverviewCard />
-        </Route>
-        <Route exact path="/input">
-          <MainTable row={2} />
-        </Route>
-        <Route exact path="/comment">
-          <Comment />
-        </Route>
-      </Switch>
-    </Router>
-  );
-}
 /* <div className={classes.root}>
         <Button component={LinkBehavior} to="/input">
           input
