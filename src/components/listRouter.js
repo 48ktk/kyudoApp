@@ -15,9 +15,9 @@ import Button from "@material-ui/core/Button";
 // import SaveIcon from "@material-ui/icons/Save";
 // import AddIcon from "@material-ui/icons/Add";
 // import EditIcon from "@material-ui/icons/Edit";
-import OverviewCard from "./overviewCard"
-import MainTable from "../pages/input";
+import OverviewCard from "./overviewCard";
 import Comment from "../pages/comment";
+import MainTable from "../pages/editPage";
 
 function BaseButton(props) {
   return <Button startIcon={props.icon}>{props.message}</Button>;
@@ -52,7 +52,7 @@ export default function ListRouter() {
   return (
     <Router>
       <List>
-      <ListItem button component={Link} to="/">
+        <ListItem button component={Link} to="/">
           <ListItemText primary="試合一覧" />
         </ListItem>
         <ListItem button component={Link} to="/input">
@@ -64,11 +64,11 @@ export default function ListRouter() {
       </List>
 
       <Switch>
-      <Route exact path="/">
+        <Route exact path="/">
           <OverviewCard />
         </Route>
         <Route exact path="/input">
-          <MainTable />
+          <MainTable row={2} />
         </Route>
         <Route exact path="/comment">
           <Comment />
