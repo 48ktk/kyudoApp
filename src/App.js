@@ -10,10 +10,41 @@ import ListItemText from "@material-ui/core/ListItemText";
 
 import OverviewCard from "./components/overviewCard";
 import Comment from "./pages/comment";
-import MainTable from "./pages/editPage";
 import "./styles/kyudo-table.scss";
+import Table from "./pages/editTable";
 
 const App = () => {
+  const data = {
+    // prettier-ignore
+    "name": "田中　太郎",
+    // prettier-ignore
+    "grade": 3,
+    // prettier-ignore
+    "data": [
+      {
+        // prettier-ignore
+        "date": {"20210122": 58},
+        // prettier-ignore
+        "result": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+          // 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1],
+          1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0],
+          // prettier-ignore
+        "comment": [
+          {
+            // prettier-ignore
+            "target": 13,
+            // prettier-ignore
+            "commentator": "田中　太郎",
+            // prettier-ignore
+            "postedDate": "2021-01-22 11:34:56",
+            // prettier-ignore
+            "content": "姿勢が悪かった"
+          }
+        ]
+      }
+    ],
+  };
   return (
     <Router>
       <List>
@@ -33,7 +64,7 @@ const App = () => {
           <OverviewCard />
         </Route>
         <Route exact path="/input">
-          <MainTable row={2} />
+          <Table row={2} data={data} />
         </Route>
         <Route exact path="/comment">
           <Comment />

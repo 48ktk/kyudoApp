@@ -7,7 +7,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Comment from "../pages/comment";
-import MainTable from "../pages/editPage";
+import Table from "../pages/editTable";
 
 const useStyles = makeStyles({
   root: {
@@ -61,7 +61,7 @@ export default function HeadingCard(prop) {
         <Router>
           <Switch>
             <Route exact path="/input">
-              <MainTable />
+              <Table></Table>
             </Route>
             <Route exact path="/comment">
               <Comment />

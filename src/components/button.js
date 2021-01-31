@@ -3,11 +3,8 @@ import PropTypes from "prop-types";
 // import { makeStyles } from "@material-ui/core/styles";
 // import { Route, MemoryRouter } from "react-router";
 // import {BrowserRouter as Router} from "react-router";
-import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
 // import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
+
 // import Typography from "@material-ui/core/Typography";
 // import Paper from "@material-ui/core/Paper";
 // import Divider from "@material-ui/core/Divider";
@@ -15,9 +12,6 @@ import Button from "@material-ui/core/Button";
 // import SaveIcon from "@material-ui/icons/Save";
 // import AddIcon from "@material-ui/icons/Add";
 // import EditIcon from "@material-ui/icons/Edit";
-import OverviewCard from "./overviewCard";
-import Comment from "../pages/comment";
-import MainTable from "../pages/editPage";
 
 function BaseButton(props) {
   return <Button startIcon={props.icon}>{props.message}</Button>;
