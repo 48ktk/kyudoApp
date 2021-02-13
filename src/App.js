@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 // import PropTypes from "prop-types";
 import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
 import List from "@material-ui/core/List";
@@ -13,38 +13,61 @@ import Comment from "./pages/comment";
 import "./styles/kyudo-table.scss";
 import Table from "./pages/editTable";
 
+// import firebase from "@/plugins/firebase";
+
 const App = () => {
-  const data = {
-    // prettier-ignore
-    "name": "田中　太郎",
-    // prettier-ignore
-    "grade": 3,
-    // prettier-ignore
-    "data": [
-      {
-        // prettier-ignore
-        "date": {"20210122": 58},
-        // prettier-ignore
-        "result": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-          null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,
-          // 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1],
-          1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0],
-          // prettier-ignore
-        "comment": [
-          {
-            // prettier-ignore
-            "target": 13,
-            // prettier-ignore
-            "commentator": "田中　太郎",
-            // prettier-ignore
-            "postedDate": "2021-01-22 11:34:56",
-            // prettier-ignore
-            "content": "姿勢が悪かった"
-          }
-        ]
+  // eslint-disable-next-line
+  const database = firebase.database();
+  // let data;
+  const [data, setData] = useState({});
+  let name = "";
+  useEffect(() => {
+    // eslint-disable-next-line
+    database.ref("members/1/data/20210122").on("value", (snapshot) => {
+      if (snapshot.exists()) {
+        setData(snapshot.val());
+        console.log(data);
       }
-    ],
-  };
+    });
+    // eslint-disable-next-line
+    database.ref("members/1/name").on("value", (snapshot) => {
+      if (snapshot.exists()) {
+        name = snapshot.val();
+        console.log(name);
+      }
+    });
+  }, []);
+  // const data = {
+  //   // prettier-ignore
+  //   "name": "田中太郎",
+  //   // prettier-ignore
+  //   "grade": 3,
+  //   // prettier-ignore
+  //   "data": [
+  //     {
+  //       // prettier-ignore
+  //       "date": {"20210122": 58},
+  //       // prettier-ignore
+  //       "result": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+  //         null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+  //         // 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1],
+  //         1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0],
+  //         // prettier-ignore
+  //       "comment": [
+  //         {
+  //           // prettier-ignore
+  //           "target": 13,
+  //           // prettier-ignore
+  //           "commentator": "田中太郎",
+  //           // prettier-ignore
+  //           "postedDate": "2021-01-22 11:34:56",
+  //           // prettier-ignore
+  //           "content": "姿勢が悪かった"
+  //         }
+  //       ]
+  //     }
+  //   ],
+  // };
   return (
     <Router>
       <List>
@@ -64,7 +87,7 @@ const App = () => {
           <OverviewCard />
         </Route>
         <Route exact path="/input">
-          <Table row={2} data={data} />
+          <Table row={2} data={data} name={name} />
         </Route>
         <Route exact path="/comment">
           <Comment />

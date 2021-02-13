@@ -4,14 +4,15 @@ import Row from "../components/Row";
 
 const Table = (props) => {
   const data = props.data;
+  console.log(data); // {comment: {…}, result: Array(58)}
   let initResult = [];
-  const name = data.name;
+  const name = props.name;
 
   // データが存在しない場合1行分作成
-  if (!data.data.length) {
+  if (!data.result.length) {
     initResult.push(Array(20).fill(null));
   } else {
-    initResult = data.data[0].result;
+    initResult = data.result;
   }
 
   const [result, setResult] = useState(initResult);
@@ -52,9 +53,26 @@ const Table = (props) => {
     tmpArray = tmpArray.concat(Array(20).fill(null));
     setResult(tmpArray);
   };
+  /**
+   * 的中未入力の末尾要素を削除する関数
+   * @param {*} array
+   */
+  const removeLastNull = (array) => {
+    while (array[array.length - 1] == null && array.length != 0) {
+      array.pop();
+    }
+  };
+  function updateDB(data) {
+    // eslint-disable-next-line
+    const database = firebase.database();
+    database.ref("members/1/data/20210122/result").set(data);
+  }
+
   function saveResult() {
     // TODO jsonデータ上書き
+    removeLastNull(result);
     console.log(result);
+    updateDB(result);
   }
 
   return (
@@ -84,6 +102,7 @@ const Table = (props) => {
 
 Table.propTypes = {
   data: PropTypes.object,
+  name: PropTypes.string,
 };
 
 export default Table;
