@@ -65,7 +65,7 @@ const Table = (props) => {
   function updateDB(data) {
     // eslint-disable-next-line
     const database = firebase.database();
-    database.ref("members/1/data/20210122/result").set(data);
+    database.ref("members/1/20210122/result").set(data);
   }
 
   function saveResult() {

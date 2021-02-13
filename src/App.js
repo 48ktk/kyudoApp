@@ -23,7 +23,7 @@ const App = () => {
   let name = "";
   useEffect(() => {
     // eslint-disable-next-line
-    database.ref("members/1/data/20210122").on("value", (snapshot) => {
+    database.ref("members/1/20210122").on("value", (snapshot) => {
       if (snapshot.exists()) {
         setData(snapshot.val());
         console.log(data);

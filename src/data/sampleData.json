@@ -3,17 +3,15 @@
     "1": {
       "name": "田中　太郎",
       "grade": 3,
-      "data": {
-        "20210122": {
-          "result": [
-            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-            null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,
-            1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0
-          ],
-          "comment": {
-            "13": {
-              "content": "姿勢が悪かった"
-            }
+      "20210122": {
+        "result": [
+          1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+          1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0
+        ],
+        "comment": {
+          "13": {
+            "content": "姿勢が悪かった"
           }
         }
       }
